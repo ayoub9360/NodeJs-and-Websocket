@@ -1,12 +1,10 @@
 export default {
-  target: 'server', // 'server' or 'static'
+  target: 'static', // 'server' or 'static'
 
   head() {
     return {
       title: 'Site_name',
       noscript: [{ innerHTML: 'This website requires JavaScript.' }],
-      htmlAttrs: {
-      },
       meta: [
         { charset: 'utf-8' },
         { name: 'viewport', content: 'width=device-width, initial-scale=1' },
