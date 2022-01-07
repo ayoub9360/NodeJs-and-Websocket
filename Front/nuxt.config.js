@@ -60,6 +60,7 @@ export default {
   publicRuntimeConfig: {
     NODE_ENV: process.env.NODE_ENV || 'developpement',
     BASE_URL: process.env.BASE_URL || 'http://localhost:3000/',
+    API_URL: process.env.API_URL || 'http://localhost:3001/',
   },
 
   css: ['@/assets/css/reset.css'],
@@ -82,8 +83,8 @@ export default {
   ],
 
   proxy: {
-    '/socket.io/': { target: 'http://localhost:3001/', pathRewrite: { '^/': '' }, changeOrigin: true },
-    '/api/': { target: 'http://localhost:3001/', pathRewrite: { '^/': '' }, changeOrigin: true },
+    '/socket.io/': { target: `${process.env.API_URL}`, pathRewrite: { '^/': '' }, changeOrigin: true },
+    '/api/': { target: `${process.env.API_URL}`, pathRewrite: { '^/': '' }, changeOrigin: true },
   },
 
   auth: {
