@@ -89,8 +89,8 @@ export default {
   ],
 
   proxy: {
-    '/socket.io/': { target: 'http://10.2.161.96:3001/', pathRewrite: { '^/': '' }, changeOrigin: true },
-    '/api/': { target: 'http://10.2.161.96:3001/', pathRewrite: { '^/': '' }, changeOrigin: true },
+    '/socket.io/': { target: 'http://localhost:3001/', pathRewrite: { '^/': '' }, changeOrigin: true },
+    '/api/': { target: 'http://localhost:3001/', pathRewrite: { '^/': '' }, changeOrigin: true },
   },
 
   auth: {
