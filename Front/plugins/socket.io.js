@@ -1,4 +1,5 @@
 import io from 'socket.io-client'
-const socket = io(`${process.env.BASE_URL || 'http://localhost:3001/'}`)
+const API_URL = process.env.API_URL || 'http://localhost:3001'
+const socket = io(API_URL)
 
 export default socket

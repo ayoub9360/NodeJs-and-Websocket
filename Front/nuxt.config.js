@@ -1,3 +1,5 @@
+const API_URL = process.env.API_URL || 'http://localhost:3001'
+
 export default {
   target: 'static', // 'server' or 'static'
 
@@ -59,8 +61,6 @@ export default {
 
   publicRuntimeConfig: {
     NODE_ENV: process.env.NODE_ENV || 'developpement',
-    BASE_URL: process.env.BASE_URL || 'http://localhost:3000/',
-    API_URL: process.env.API_URL || 'http://localhost:3001/',
   },
 
   css: ['@/assets/css/reset.css'],
@@ -84,12 +84,12 @@ export default {
 
   proxy: {
     '/socket.io/': {
-      target: `${process.env.API_URL || 'http://localhost:3001/'}`,
+      target: API_URL,
       pathRewrite: { '^/': '' },
       changeOrigin: true,
     },
     '/api/': {
-      target: `${process.env.API_URL || 'http://localhost:3001/'}`,
+      target: API_URL,
       pathRewrite: { '^/': '' },
       changeOrigin: true,
     },
