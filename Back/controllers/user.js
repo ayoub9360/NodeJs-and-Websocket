@@ -6,7 +6,7 @@ if (process.env.NODE_ENV !== 'production') {
 }
 exports.signup = (req, res, next) => {
   //* Crypt the password
-  const { email, password } = req.body
+  const { email, password, username } = req.body
   bcrypt
     .hash(password, 10)
     .then((hash) => {
@@ -14,6 +14,7 @@ exports.signup = (req, res, next) => {
       const user = new User({
         email,
         password: hash,
+        username
       })
       //* Save the user in the database
       user
@@ -57,6 +58,7 @@ exports.user = (req, res, next) => {
         user: {
           _id: user._id,
           email: user.email,
+          username: user.username
         },
       })
     })
