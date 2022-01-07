@@ -2,12 +2,10 @@ export default {
   target: 'server', // 'server' or 'static'
 
   head() {
-    const i18nHead = this.$nuxtI18nHead({ addSeoAttributes: true })
     return {
       title: 'Site_name',
       noscript: [{ innerHTML: 'This website requires JavaScript.' }],
       htmlAttrs: {
-        ...i18nHead.htmlAttrs,
       },
       meta: [
         { charset: 'utf-8' },
@@ -53,12 +51,10 @@ export default {
           content: 'Site_description',
         },
         { hid: 'twitter:card', name: 'twitter:card', content: 'summary' },
-        ...i18nHead.meta,
       ],
       link: [
         { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
         { rel: 'manifest', href: '/site.webmanifest' },
-        ...i18nHead.link,
       ],
     }
   },
@@ -82,7 +78,6 @@ export default {
     '@nuxtjs/axios',
     '@nuxt/content',
     '@nuxtjs/sitemap',
-    '@nuxtjs/i18n',
     '@nuxtjs/style-resources',
     '@nuxtjs/auth',
     '@nuxtjs/proxy',
@@ -119,22 +114,6 @@ export default {
       home: '/', // User will be redirect to this path after login if accessed login page directly
     },
     rewriteRedirects: true,
-  },
-
-  // https://i18n.nuxtjs.org/basic-usage
-  i18n: {
-    locales: [
-      // { code: 'en', iso: 'en-US' },
-      { code: 'fr', iso: 'fr-FR' },
-    ],
-    baseUrl: `https://${process.env.BASE_URL}`,
-    defaultLocale: 'fr',
-    vueI18n: { fallbackLocale: 'fr' },
-    detectBrowserLanguage: {
-      useCookie: true,
-      cookieKey: 'i18n_redirected',
-      redirectOn: 'root', // recommended
-    },
   },
 
   sitemap: {
