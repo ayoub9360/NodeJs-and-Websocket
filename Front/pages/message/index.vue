@@ -1,13 +1,21 @@
 <template>
   <div class="card-container">
-    <h1 v-if="messages[0].length < 1">No post available</h1>
     <div ref="messages" class="message-container">
-      <ul v-for="(item, index) in messages[0]" :key="index">
-        <li>User name : {{ item.userName }}</li>
-        <li>Message : {{ item.message }}</li>
-        <li>Date : {{ item.date }}</li>
-        <li>----------------</li>
+      <ul
+        v-for="(item, index) in messages[0]"
+        :key="index"
+        :class="{ singleMessageALT: item.userName === $auth.user.username }"
+        class="singleMessage"
+      >
+        <li>{{ item.userName }}</li>
+        <li class="messageContent">{{ item.message }}</li>
+        <li>{{ item.date }}</li>
       </ul>
+      <!-- <h1 v-if="messages[0].length < 1">No post available</h1> -->
+      <div v-if="messages[0].length < 1" class="noMessage">
+        <img src="@/assets/images/empty.png" alt="empty" />
+        <h1>Aucun messages</h1>
+      </div>
     </div>
 
     <form class="w-full max-w-sm" @submit.prevent="sendMessage">
@@ -26,7 +34,7 @@
             class="shadow bg-purple-500 hover:bg-purple-400 focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded"
             type="submit"
           >
-            Envoyer
+            ⯈
           </button>
         </div>
       </div>
@@ -96,12 +104,64 @@ export default {
     max-width: 384px;
     margin: auto;
     background: white;
-    padding: 32px;
+    // padding: 32px;
     box-sizing: border-box;
     border-radius: 8px;
     overflow-y: scroll;
     display: flex;
     flex-direction: column;
+    .noMessage {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      // background: lime;
+      height: 100%;
+      width: 100%;
+      img {
+        width: 20%;
+        margin-bottom: 3%;
+      }
+    }
+    .singleMessage {
+      // background: blue;
+      margin: 1% 30% 1% 1%;
+
+      .messageContent {
+        background: rgb(235, 235, 235);
+        color: rgb(63, 63, 63);
+        // background: rgb(139,92,246);
+        border-radius: 30px;
+        padding: 5% 5%;
+        word-break: break-all;
+      }
+      li:first-child,
+      li:nth-child(3) {
+        color: rgb(228, 228, 228);
+        margin-left: 13px;
+        font-size: 10px;
+      }
+    }
+    .singleMessageALT {
+      // background: blue;
+      margin: 1% 1% 1% 30%;
+      text-align: right;
+
+      .messageContent {
+        // background: rgb(235, 235, 235);
+        color: rgb(255, 255, 255);
+        background: rgb(139, 92, 246);
+        border-radius: 30px;
+        padding: 5% 5%;
+        word-break: break-all;
+      }
+      li:first-child,
+      li:nth-child(3) {
+        color: rgb(228, 228, 228);
+        margin-right: 13px;
+        font-size: 10px;
+      }
+    }
   }
   form {
     margin: auto;
