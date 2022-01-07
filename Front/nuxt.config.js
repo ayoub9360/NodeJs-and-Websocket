@@ -84,7 +84,11 @@ export default {
 
   proxy: {
     '/socket.io/': { target: `${process.env.API_URL}`, pathRewrite: { '^/': '' }, changeOrigin: true },
-    '/api/': { target: `${process.env.API_URL}`, pathRewrite: { '^/': '' }, changeOrigin: true },
+    '/api/': {
+      target: `${process.env.API_URL || 'http://localhost:3001/'}`,
+      pathRewrite: { '^/': '' },
+      changeOrigin: true,
+    },
   },
 
   auth: {
