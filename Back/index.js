@@ -66,7 +66,6 @@ Message.find()
       .save()
 
     messages[0].push(userMessage)
-    console.log(messages);
     socket.broadcast.emit('new-message', userMessage)
   })
 })
