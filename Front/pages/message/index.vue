@@ -9,9 +9,8 @@
       >
         <li>{{ item.userName }}</li>
         <li class="messageContent">{{ item.message }}</li>
-        <li>{{ item.date }}</li>
+        <li>{{ getDate(item.date) }}</li>
       </ul>
-      <!-- <h1 v-if="messages[0].length < 1">No post available</h1> -->
       <div v-if="messages[0].length < 1" class="noMessage">
         <img src="@/assets/images/empty.png" alt="empty" />
         <h1>Aucun messages</h1>
@@ -34,7 +33,7 @@
             class="shadow bg-purple-500 hover:bg-purple-400 focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded"
             type="submit"
           >
-            ⯈
+            Envoyer
           </button>
         </div>
       </div>
@@ -67,6 +66,9 @@ export default {
     this.scrollToBottom()
   },
   methods: {
+    getDate(date) {
+      return new Date(date).toLocaleString()
+    },
     sendMessage() {
       if (!this.message.trim()) {
         return
@@ -104,7 +106,7 @@ export default {
     max-width: 384px;
     margin: auto;
     background: white;
-    // padding: 32px;
+    padding: 12px;
     box-sizing: border-box;
     border-radius: 8px;
     overflow-y: scroll;
@@ -131,13 +133,16 @@ export default {
         background: rgb(235, 235, 235);
         color: rgb(63, 63, 63);
         // background: rgb(139,92,246);
+        width: max-content;
+        max-width: 248px;
+        margin-right: auto;
         border-radius: 30px;
         padding: 5% 5%;
         word-break: break-all;
       }
       li:first-child,
       li:nth-child(3) {
-        color: rgb(228, 228, 228);
+        color: #8b8b8b;
         margin-left: 13px;
         font-size: 10px;
       }
@@ -151,15 +156,20 @@ export default {
         // background: rgb(235, 235, 235);
         color: rgb(255, 255, 255);
         background: rgb(139, 92, 246);
+        width: max-content;
+        max-width: 248px;
+        margin-right: 0;
+        margin-left: auto;
         border-radius: 30px;
         padding: 5% 5%;
         word-break: break-all;
       }
       li:first-child,
       li:nth-child(3) {
-        color: rgb(228, 228, 228);
+        color: #8b8b8b;
+        font-weight: bold;
         margin-right: 13px;
-        font-size: 10px;
+        font-size: 11px;
       }
     }
   }
