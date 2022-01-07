@@ -100,12 +100,12 @@ export default {
       local: {
         endpoints: {
           login: {
-            url: 'api/auth/login',
+            url: '/api/auth/login',
             method: 'post',
             propertyName: 'token',
           },
           user: {
-            url: 'api/auth/user',
+            url: '/api/auth/user',
             method: 'get',
             propertyName: 'user',
           },
