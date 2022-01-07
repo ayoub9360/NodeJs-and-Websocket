@@ -132,6 +132,7 @@ export default {
       .messageContent {
         background: rgb(235, 235, 235);
         color: rgb(63, 63, 63);
+        text-align: left;
         // background: rgb(139,92,246);
         width: max-content;
         max-width: 248px;
@@ -153,6 +154,7 @@ export default {
       text-align: right;
 
       .messageContent {
+        text-align: left;
         // background: rgb(235, 235, 235);
         color: rgb(255, 255, 255);
         background: rgb(139, 92, 246);
