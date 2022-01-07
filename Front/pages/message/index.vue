@@ -30,8 +30,6 @@
           </button>
         </div>
       </div>
-
-      <p v-if="error" class="text-red-600">{{ error }}</p>
     </form>
   </div>
 </template>
@@ -67,7 +65,7 @@ export default {
       }
       const message = {
         userId: this.$auth.user._id,
-        userName: this.$auth.user.email,
+        userName: this.$auth.user.username,
         message: this.message,
         date: new Date().toJSON(),
       }

@@ -4,20 +4,37 @@
 
     <h1>Signup page</h1>
 
-    <form class="w-full max-w-sm" @submit.prevent="login">
+    <form class="w-full max-w-sm" @submit.prevent="signUp">
       <div class="md:flex md:items-center mb-6">
         <div class="md:w-1/3">
-          <label class="block text-gray-500 font-bold md:text-right mb-1 md:mb-0 pr-4" for="inline-username">
+          <label class="block text-gray-500 font-bold md:text-right mb-1 md:mb-0 pr-4" for="inline-email">
             Email
           </label>
         </div>
         <div class="md:w-2/3">
           <input
-            id="inline-username"
+            id="inline-email"
             v-model="form.email"
             class="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500"
             type="text"
             placeholder="Email"
+          />
+        </div>
+      </div>
+
+      <div class="md:flex md:items-center mb-6">
+        <div class="md:w-1/3">
+          <label class="block text-gray-500 font-bold md:text-right mb-1 md:mb-0 pr-4" for="inline-username">
+            Username
+          </label>
+        </div>
+        <div class="md:w-2/3">
+          <input
+            id="inline-username"
+            v-model="form.username"
+            class="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500"
+            type="text"
+            placeholder="Username"
           />
         </div>
       </div>
@@ -63,23 +80,25 @@ export default {
       form: {
         email: 'exemple@gmail.com',
         password: 'password',
+        username: 'username',
       },
       error: null,
       success: null,
     }
   },
   methods: {
-    login() {
+    signUp() {
       this.error = null
 
       //* check if all fields are filled
-      if (!this.form.email || !this.form.password) return (this.error = 'Please fill all fields')
+      if (!this.form.email || !this.form.password || !this.form.username) return (this.error = 'Please fill all fields')
 
       //* Send create user request with axios
       this.$axios
         .post('/api/auth/signup', {
           email: this.form.email,
           password: this.form.password,
+          username: this.form.username,
         })
         .then(() => {
           this.$router.push('/user/login')
